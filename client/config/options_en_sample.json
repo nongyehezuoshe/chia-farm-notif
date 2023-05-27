@@ -1,0 +1,82 @@
+{
+  "chia_server": {
+    "value": "wss://localhost:55400",
+    "description": "Address of the chia server"
+  },
+  "chia_ssl": {
+    "value": "/root/.chia/mainnet/config/ssl",
+    "description": "Path to SSL certificate/folder."
+  },
+  "lang": {
+    "value": "zh_CN",
+    "description": "language zh_CN or en."
+  },
+  "url_wechat": {
+    "value": "https://xizhi.qqoq.net/xxxxxxxxxxxxxxxxxxx.send",
+    "description": "URL for WeChat push. Please register at the following address: https://xz.qqoq.net"
+  },
+  "url_serve": {
+    "value": "https://notif.xch.wiki",
+    "description": "URL for server-side push. The client-side deployment of the server is at https://notif.xch.wiki. It enables email and offline push."
+  },
+  "name": {
+    "value": "name_1",
+    "description": "Customize a name for each machine for easy differentiation."
+  },
+  "enable_wechat": {
+    "value": true,
+    "description": "Enable WeChat push"
+  },
+  "enable_email": {
+    "value": true,
+    "description": "Enable email push"
+  },
+  "email": {
+    "value": "name@yourdomain.com",
+    "description": "Receiving email address for email push"
+  },
+  "notif_reward": {
+    "value": false,
+    "description": "Enable block reward notification"
+  },
+  "notif_point": {
+    "value": true,
+    "description": "Enable plotting power drop notification."
+  },
+  "notif_point_interval": {
+    "value": 0.2,
+    "description": "If the current sieving value per hour is lower than the previous hour by this ratio, a notification will be sent."
+  },
+  "notif_offline": {
+    "value": true,
+    "description": "Enable offline notification."
+  },
+  "notif_offline_interval": {
+    "value": 30,
+    "description": "Interval duration for offline detection, in minutes."
+  },
+  "notif_sync": {
+    "value": true,
+    "description": "Enable full node synchronization exception notification"
+  },
+  "notif_sync_interval": {
+    "value": 10,
+    "description": "Interval duration for rechecking full node synchronization exception, in minutes."
+  },
+  "notif_temperature": {
+    "value": true,
+    "description": "Enable abnormal disk temperature notification"
+  },
+  "notif_temperature_interval": {
+    "value": 30,
+    "description": "Interval duration for disk temperature check, in minutes."
+  },
+  "notif_temperature_temp": {
+    "value": 50,
+    "description": "Threshold for abnormal disk temperature notification."
+  },
+  "temperature_content": {
+    "value": true,
+    "description": "Include disk temperature information in all notifications."
+  }
+}

@@ -1,0 +1,110 @@
+{
+	"title_farmd":{
+		"en":"New chia farmed",
+		"zh_CN":"发现新的区块"
+	},
+	"content_reward":{
+		"en":"Congratulations on discovering a new block ",
+		"zh_CN":"恭喜发现新区块"
+	},
+	"content_filter_1":{
+		"en":"Average passed filter per minute: ",
+		"zh_CN":"平均每分钟通过的初筛值： "
+	},
+	"content_filter_2":{
+		"en":"Passed filter current hour: ",
+		"zh_CN":"当前一小时通过的初筛值：  "
+	},
+	"content_filter_3":{
+		"en":"assed filter last hour: ",
+		"zh_CN":"上一小时通过的初筛值： "
+	},
+	"content_filter_4":{
+		"en":"Currently returned farm information: ",
+		"zh_CN":"当前返回的farm信息： "
+	},
+	"title_point":{
+		"en":"Abnormal farming power",
+		"zh_CN":"算力异常"
+	},
+	"content_point":{
+		"en":"Abnormal farming power: There has been a significant decrease passed filter in the current hourly compared to the previous hour. It is recommended to perform a check for confirmation.",
+		"zh_CN":"算力异常：当前一小时通过的初筛值较上一个小时出现了明显下降，建议进行检查确认！"
+	},
+	"title_offline":{
+		"en":"Machine disconnected",
+		"zh_CN":"设备掉线"
+	},
+	"content_offline":{
+		"en":"The machine may have been disconnected, please check and confirm.  \nPossible situations include:  \n1, The machine has stopped working due to malfunctions or power outage.  \n2, Network disconnection.",
+		"zh_CN":"机器可能已经掉线，请检查确认。  \n可能情况有：  \n1、机器因故障或者停电等原因已经停止工作；  \n2、断网。"
+	},
+	"content_offline_error":{
+		"en":"The machine may have been disconnected, please check and confirm.  \nPossible situation: The program has encountered an unknown error and stopped running.",
+		"zh_CN":"机器可能已经掉线，请检查确认。 \n可能情况为：程序出现未知错误而停止运行。"
+	},
+	"err_serve":{
+		"en":"Connection to the remote push service has failed. Disconnection notifications and email notifications will not work. Please check if the remote push service is functioning properly.",
+		"zh_CN":"连接远程推送服务失败，掉线通知及Email推送将不会工作，请检查远程推送的服务是否正常。"
+	},
+	"title_sync":{
+		"en":"Full node synchronization abnormality.",
+		"zh_CN":"全节点同步异常"
+	},
+	"content_sync":{
+		"en":"The full node is detected to be out of sync. Please check and confirm.",
+		"zh_CN":"检测到全节点未同步，请检查确认。"
+	},
+	"title_sync_ok":{
+		"en":"The full node has successfully resumed synchronization.",
+		"zh_CN":"全节点已经恢复同步。"
+	},
+	"filter":{
+		"en":"Passed filter as follows",
+		"zh_CN":"通过的初筛统计"
+	},
+	"filter_min":{
+		"en":"Average per minute:",
+		"zh_CN":"平均每分钟:"
+	},
+	"filter_lasthour":{
+		"en":"Previous hour totally:",
+		"zh_CN":"上一小时合计:"
+	},
+	"filter_currenthour":{
+		"en":"Current hour totally:",
+		"zh_CN":"当前一小时累计:"
+	},
+	"title_server_fail":{
+		"en":"Failed to connect to the remote server.",
+		"zh_CN":"与远程服务器连接失败"
+	},
+	"content_server_fail":{
+		"en":"Failed to connect to the remote server. Please be aware that features relying on the remote server may be ineffective, such as disconnection notifications and email notifications.",
+		"zh_CN":"与远程服务器连接失败, 请留意！ 依赖远程服务器的功能可能无效，比如：掉线通知、邮件通知。"
+	},
+	"title_temperature":{
+		"en":"The hard drive temperature is abnormal.",
+		"zh_CN":"硬盘温度异常"
+	},
+	"content_temperature":{
+		"en":"Detected abnormal temperatures in some hard drives. Please check and confirm:",
+		"zh_CN":"检测到部分硬盘温度异常，请检查确认："
+	},
+	"content_temperature_temp":{
+		"en":" Temperature:",
+		"zh_CN":" 温度："
+	},
+	"content_temperature_cotent":{
+		"en":"Hard drive temperature information:",
+		"zh_CN":"硬盘温度信息："
+	},
+	"title_try":{
+		"en":"Farm Notification Initiated",
+		"zh_CN":"农场通知开始启动"
+	},
+	"content_try":{
+		"en":"This is a test notification sent at the start of program initialization. It appears that the program is running smoothly, and the notification channel is functioning properly!",
+		"zh_CN":"这是程序开始运行时推送的一条测试通知，看起来程序运行正常，并且推送通道也正常！"
+	}
+}

@@ -1,0 +1,7 @@
+{
+	"mail_host": "smtp.qiye.aliyun.com",
+	"mail_port": 465,
+	"mail_secure": true,
+	"mail_user": "service@xch.wiki",
+	"mail_pass": "yourpasswd"
+}
