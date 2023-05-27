@@ -8,6 +8,8 @@ Chia农场的通知服务
 	2、千万不能将ssl文件夹内的任何文件泄露给任何人，否则后果同上👆。  
 	3、免责申明：使用本程序造成的任何后果，本人不承担任何责任！  
 
+> 如果连的矿池，会错误检出爆块，请务必关闭爆块通知！！！
+
 # 使用说明
 
 ## 1、安装python
@@ -57,9 +59,9 @@ sudo vi options.json
 
 `chia_server`: chia服务的地址，默认即可，一般不做修改。  
 
-`chia_ssl`: ssl证书文件夹的路径。该文件夹的路径一般在当前用户目录下，Ubuntu系统当前用户为`root`的话，则为：`/root/.chia/mainnet/config/ssl`，普通用户可能在：`/home/<username>/.chia/mainnet/config/ssl`。Windows用户一般在：`C:\Users\<username>\.chia\mainnet\config\ssl`。  
+`chia_ssl`: ssl证书文件夹的路径。该文件夹的路径一般在当前用户目录下，Ubuntu系统当前用户为`root`的话，则为：`/root/.chia/mainnet/config/ssl`，普通用户可能在：`/home/<username>/.chia/mainnet/config/ssl`。Windows用户一般在：`C:\\Users\\<username>\\.chia\\mainnet\\config\\ssl`。  
 
-> 注意：请将`<username>`替换为你自己的用户名；Linux系统路径中的斜杠使用`/`，而Windows则使用的时`\`，请注意区分，后面不再做说明。  
+> 注意：请将`<username>`替换为你自己的用户名；Linux系统路径中的斜杠使用`/`，而Windows则使用的时`\`，且需要使用`\`转义，请注意区分，后面不再做说明。  
 
 `lang`: 语言。`en`表示英文，`zh_CN`表示简体中文。    
 
