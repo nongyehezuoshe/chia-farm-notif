@@ -8,7 +8,7 @@
     "description": "Path to SSL certificate/folder."
   },
   "lang": {
-    "value": "zh_CN",
+    "value": "en",
     "description": "language zh_CN or en."
   },
   "url_wechat": {

@@ -58,7 +58,10 @@ let notif={
 				return;
 			}
 			res.json({"success":"false, unknown"});
-		})
+		});
+		app.get("/",(req,res)=>{
+			res.send("Service online!\nFor more information: https://github.com/nongyehezuoshe/chia-farm-notif")
+		});
 	},
 	notif_wechat:async info=>{
 		const url = info.url_wechat;
