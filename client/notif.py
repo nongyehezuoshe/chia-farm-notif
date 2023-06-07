@@ -44,17 +44,26 @@ def notif_wechat(data):
     if chiahzs.opt_get("temperature_content") and tool_lang("title_temperature") not in new_data["title"]:
         new_data=temperature_content(new_data)
 
-    try:
-        response = requests.post(url_wechat, data=json.dumps(new_data), headers=headers)
-        response.raise_for_status()
-    except requests.exceptions.RequestException as e:
-        print('error:', e)
-        return
-    else:
-        if response.status_code==200:
-            print("wechat notif response:", response.json())
+    flag=0
+    while True:
+        try:
+            if flag>5:
+                print("notif_wechat_err")
+                break
+            else:
+                flag+=1
+            response = requests.post(url_wechat, data=json.dumps(new_data), headers=headers)
+            response.raise_for_status()
+        except requests.exceptions.RequestException as e:
+            print('error:', e)
+            time.sleep(10)
         else:
-            print("notif_wechat_err")
+            if response.status_code==200:
+                print("wechat notif response:", response.json())
+                break
+            else:
+                print("notif_wechat_err")
+                time.sleep(10)
 
 def notif_mail(data):
     url_serve=chiahzs.opt_get("url_serve")
@@ -68,18 +77,27 @@ def notif_mail(data):
     if chiahzs.opt_get("temperature_content") and not new_data["title"]==tool_lang("title_temperature"):
         new_data=temperature_content(new_data)
 
-    try:
-        response = requests.post(url_serve, data=json.dumps(new_data), headers=headers)
-        response.raise_for_status()
-    except requests.exceptions.RequestException as e:
-        print('error:', e)
-        print(tool_lang("err_serve"))
-        return
-    else:
-        if response.status_code==200 and response.json()["success"]:
-            print("notif_mail_response:", response.json())
+    flag=0
+    while True:
+        try:
+            if flag>5:
+                print("notif_mail_err")
+                break
+            else:
+                flag+=1
+            response = requests.post(url_serve, data=json.dumps(new_data), headers=headers)
+            response.raise_for_status()
+        except requests.exceptions.RequestException as e:
+            print('error:', e)
+            print(tool_lang("err_serve"))
+            time.sleep(10)
         else:
-            print("notif_mail_err")
+            if response.status_code==200 and response.json()["success"]:
+                print("notif_mail_response:", response.json())
+                break
+            else:
+                print("notif_mail_err")
+                time.sleep(10)
 
 def show_filter(message):
     if message["data"]["farming_info"]["passed_filter"]>0:
@@ -230,21 +248,28 @@ async def notif_offline(type):
                 maindata["server_ok"]=False
                 notif_wechat(data)
 
-        try:
-            response = requests.post(url_serve, data=json.dumps(data), headers=headers)
-            response.raise_for_status()
-        except requests.exceptions.RequestException as e:
-            print('error:', e)
-            print(tool_lang("err_serve"))
-            server_fail()
-            return
-        else:
-            # if response.status_code==200:
-            if response.status_code==200 and response.json()["success"]:
-                print("offline_push_response:", response.json())
-                maindata["server_ok"]=True
+        flag=0
+        while True:
+            try:
+                if flag>5:
+                    server_fail()
+                    break
+                else:
+                    flag+=1
+                response = requests.post(url_serve, data=json.dumps(data), headers=headers)
+                response.raise_for_status()
+            except requests.exceptions.RequestException as e:
+                print('error:', e)
+                print(tool_lang("err_serve"))
+                time.sleep(10)
             else:
-                server_fail()
+                if response.status_code==200 and response.json()["success"]:
+                    print("offline_push_response:", response.json())
+                    maindata["server_ok"]=True
+                    break
+                else:
+                    # server_fail()
+                    time.sleep(10)
                 
     if type=="exit" or type=="error":
         push(data)
