@@ -195,30 +195,53 @@ async def notif_try():
     }
     notification(data)
 
-async def notif_temperature():
-    if not chiahzs.opt_get("notif_temperature"):
-        return False
-
-    def temperature():
-        flag_temp=False
-        disk_temperatures = get_disk_temperature()
-        data = {
-            'title': chiahzs.opt_get("name")+": "+tool_lang("title_temperature"), 
-            "content": tool_lang("content_temperature")
-        }
-        if disk_temperatures is not None:
-            for disk, temperature in disk_temperatures.items():
-                if temperature >= chiahzs.opt_get("notif_temperature_temp"):
-                    flag_temp=True
-                    data["content"]+="  \n"+str(disk)+tool_lang("content_temperature_temp")+str(temperature)
-        if flag_temp:
-            print("temperature",data)
-            notification(data)
-  
+async def connect():
     while True:
-        temperature()
-        await asyncio.sleep(chiahzs.opt_get("notif_temperature_interval")*60)
-    return False
+        if not (chiahzs.opt_get("notif_reward") or chiahzs.opt_get("notif_point") or chiahzs.opt_get("notif_sync")):
+            return
+
+        ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
+        ssl_context.check_hostname = False
+        ssl_context.verify_mode = ssl.CERT_NONE
+        ssl_context.load_cert_chain(os.path.join(chiahzs.opt_get("chia_ssl"),"wallet","private_wallet.crt"), os.path.join(chiahzs.opt_get("chia_ssl"),"wallet","private_wallet.key"))
+
+        url = chiahzs.opt_get("chia_server")
+        sendMesasge = {"destination": "daemon", "command": "register_service", "request_id": maindata["id"], "origin": "", "data": {"service": 'wallet_ui'}}
+
+        timeout = 5  # 超时时长（秒）
+
+        try:
+            # 创建一个协程用于建立连接
+            connect_coroutine = websockets.connect(url, ssl=ssl_context)
+
+            # 使用asyncio.wait_for函数设置超时时长
+            websocket = await asyncio.wait_for(connect_coroutine, timeout=timeout)
+
+            print('{0}: Sent Message {1}'.format(datetime.datetime.now(), sendMesasge))
+            await websocket.send(json.dumps(sendMesasge))
+            while True:
+                response = await websocket.recv()
+                wsmsg = json.loads(response)
+
+                if wsmsg.get("command") == "get_blockchain_state":
+                    notif_sync(wsmsg)
+
+                if wsmsg["command"] == "new_farming_info":
+                    print('{0} farming_info : {1}'.format(datetime.datetime.now(), wsmsg["data"]["farming_info"]))
+                    show_filter(wsmsg)
+                    notif_point(wsmsg)
+                    notif_reward(wsmsg)
+
+            # 关闭连接
+            # await websocket.close()
+
+        except asyncio.TimeoutError:
+            print("connect timeout")
+            continue
+
+        except websockets.WebSocketException as e:
+            print(f"connect error: {e}")
+            continue
 
 async def notif_offline(type):
     if not chiahzs.opt_get("notif_offline"):
