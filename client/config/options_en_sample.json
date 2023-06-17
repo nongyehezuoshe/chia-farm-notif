@@ -35,6 +35,10 @@
     "value": "name@yourdomain.com",
     "description": "Receiving email address for email push"
   },
+  "notif_try":{
+    "value":true,
+    "description":"Sending a test notification when the program starts."
+  },
   "notif_reward": {
     "value": false,
     "description": "Enable block reward notification"
@@ -74,6 +78,10 @@
   "notif_temperature_temp": {
     "value": 50,
     "description": "Threshold for abnormal disk temperature notification."
+  },
+  "temperature_exclusion_ssd":{
+    "value": true,
+    "description": "Not detecting the temperature of ssd-type hard drives."
   },
   "temperature_content": {
     "value": true,

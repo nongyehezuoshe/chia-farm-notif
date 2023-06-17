@@ -77,6 +77,8 @@ Below are explanations for each option in the configuration file (brief explanat
 
 `email`: The receiving email address for email push. 
 
+`notif_try`: Sending a test notification when the program starts. If not needed, change it to `false`.
+
 `notif_reward`: Enable block found notifications. If not needed, change it to `false`.
 
 `notif_point`: Enable plotting point notifications. If not needed, change it to `false`.
@@ -96,6 +98,8 @@ Below are explanations for each option in the configuration file (brief explanat
 `notif_temperature_interval`:  Interval for checking disk temperature, in minutes. 
 
 `notif_temperature_temp`: Threshold temperature for disk temperature anomaly notifications, in °C.
+
+`temperature_exclusion_ssd`: Not detecting the temperature of ssd-type hard drives.  
 
 `temperature_content`: Include disk temperature information in all notifications. If not needed, change it to `false`. When this option is enabled, disk temperature information will be attached after each notification.
 

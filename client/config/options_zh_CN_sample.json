@@ -35,6 +35,10 @@
 		"value":"name@yourdomain.com",
 		"description":"邮件推送的接收邮箱"
 	},
+	"notif_try":{
+		"value":true,
+		"description":"程序启动时，推送测试通知。"
+	},
 	"notif_reward":{
 		"value":false,
 		"description":"开启爆块通知"
@@ -74,6 +78,10 @@
 	"notif_temperature_temp":{
 		"value":50,
 		"description":"硬盘温度异常通知的阈值。"
+	},
+	"temperature_exclusion_ssd":{
+		"value": true,
+		"description": "不检测固态硬盘温度。"
 	},
 	"temperature_content":{
 		"value":true,

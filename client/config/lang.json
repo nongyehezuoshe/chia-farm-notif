@@ -92,8 +92,8 @@
 		"zh_CN":"检测到部分硬盘温度异常，请检查确认："
 	},
 	"content_temperature_temp":{
-		"en":" Temperature:",
-		"zh_CN":" 温度："
+		"en":"Temperature:",
+		"zh_CN":"温度："
 	},
 	"content_temperature_cotent":{
 		"en":"Hard drive temperature information:",

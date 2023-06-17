@@ -77,6 +77,8 @@ sudo vi options.json
 
 `email`: 邮件推送的接收邮箱。  
 
+`notif_try`: 程序启动时推送测试通知。如不需要则修改为`false`。  
+
 `notif_reward`: 开启爆块通知。如不需要则修改为`false`。  
 
 `notif_point`: 开启掉算力通知。如不需要则修改为`false`。  
@@ -96,6 +98,8 @@ sudo vi options.json
 `notif_temperature_interval`: 硬盘温度检查间隔时长，单位：分钟。  
 
 `notif_temperature_temp`: 硬盘温度异常通知的阈值，单位：°C。  
+
+`temperature_exclusion_ssd`: 不检测固态硬盘温度。  
 
 `temperature_content`: 在所有通知后附带硬盘温度信息。如不需要则修改为`false`，开启该选项后，将在推送的每一条信息后面附带硬盘温度信息。
 

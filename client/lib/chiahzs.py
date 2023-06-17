@@ -13,4 +13,4 @@ def log_show(line,text):
 	print("\033[7m"+time.strftime("%H:%M:%S ", time.localtime())+str(line)+": "+"\033[0m",text)
 
 def opt_get(type):
-	return options[type]["value"]
+	return options.get(type, {}).get("value", False)
