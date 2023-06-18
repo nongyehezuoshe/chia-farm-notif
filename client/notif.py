@@ -424,7 +424,7 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         print("Keyboard exit")
         asyncio.run(notif_offline("exit"))
-    # except Exception:
-    #     print("err")
-    #     print(Exception)
-    #     asyncio.run(notif_offline("error"))
+    except Exception:
+        print("err")
+        print(Exception)
+        asyncio.run(notif_offline("error"))
