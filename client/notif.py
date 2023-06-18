@@ -17,7 +17,8 @@ maindata={
     "time_start_hour":time.time(),
     "time_heartbeat":time.time(),
     "time_sync":None,
-    "server_ok":None
+    "server_ok":None,
+    "rewards_amount":None
 }
 
 def tool_lang(text):
@@ -328,8 +329,92 @@ async def notif_offline(type):
         push(data)
         await asyncio.sleep(chiahzs.opt_get("notif_offline_interval")*60)
 
+async def notif_reward_pool():
+    print("notif_reward_pool")
+    if not chiahzs.opt_get("notif_reward_pool"):
+        return
+
+    ts = chiahzs.opt_get("notif_reward_pool_interval") * 60
+    xch_address = chiahzs.opt_get("notif_reward_pool_xch")
+
+    def get_amount():
+        url=f"https://api2.spacescan.io/1/xch/balance/{xch_address}"
+        flag=0
+        while True:
+            try:
+                if flag>5:
+                    return None
+                    break
+                else:
+                    flag+=1
+                response = requests.get(url)
+                response.raise_for_status()
+            except requests.exceptions.RequestException as e:
+                print('notif_reward_pool error:', e)
+                time.sleep(10)
+            else:
+                if response.status_code==200 and response.json()["status"]=="Success":
+                    return response.json()["data"]["received"]
+                    break
+                else:
+                    # server_fail()
+                    time.sleep(10)
+
+    def get_rewards(num):
+        url=f"https://api2.spacescan.io/1/xch/address/txns/{xch_address}?page=1&count=50"
+        flag=0
+        while True:
+            try:
+                if flag>5:
+                    return None
+                    break
+                else:
+                    flag+=1
+                response = requests.get(url)
+                response.raise_for_status()
+            except requests.exceptions.RequestException as e:
+                print('notif_reward_pool error:', e)
+                time.sleep(10)
+            else:
+                if response.status_code==200 and response.json()["status"]=="Success":
+                    rewards=[]
+                    coins = response.json()["data"]["coins"]
+                    num=int(min(num,len(coins)))
+                    for i in range(0,num):
+                        if coins[i]["coinbase"] :
+                            rewards.append(coins[i])
+                    return rewards
+                    break
+                else:
+                    time.sleep(10)
+
+    def rewards():
+        amount= get_amount()
+        print("amount:",amount)
+        if maindata["rewards_amount"] is None:
+            maindata["rewards_amount"] = amount
+            return
+        if amount > maindata["rewards_amount"] :
+            rewards = get_rewards((amount-maindata["rewards_amount"])//1.75)
+            print("rewards:",rewards)
+            if rewards:
+                data = {
+                    "type":"reward",
+                    "title": chiahzs.opt_get("name")+": "+tool_lang("title_farmd"), 
+                    "content": tool_lang("content_reward")+":"
+                }
+                for coin in rewards:
+                    data['content']=f"{data['content']}  \n{tool_lang('content_reward_time')}: {datetime.datetime.fromtimestamp(int(coin['timestamp'].strip())).strftime('%Y-%m-%d %H:%M:%S')}, {tool_lang('content_reward_height')}: {coin['confirmed_index']}"
+                notification(data)
+            maindata["rewards_amount"] = amount
+        return
+
+    while True:
+        rewards()
+        await asyncio.sleep(ts)
+
 async def main():
-    await asyncio.gather(connect(), notif_offline("heartbeat"), notif_temperature(), notif_try())
+    await asyncio.gather(connect(), notif_offline("heartbeat"), notif_temperature(), notif_try(), notif_reward_pool())
 
 if __name__ == "__main__":
     # options=json.loads(open("config/options.json","rb").read())
@@ -339,7 +424,7 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         print("Keyboard exit")
         asyncio.run(notif_offline("exit"))
-    except Exception:
-        print("err")
-        print(Exception)
-        asyncio.run(notif_offline("error"))
+    # except Exception:
+    #     print("err")
+    #     print(Exception)
+    #     asyncio.run(notif_offline("error"))

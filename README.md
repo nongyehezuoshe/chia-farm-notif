@@ -3,7 +3,12 @@ Notification Service for Chia Farm
 
 [中文说明](README_zh_CN.md)
 
-The notification service consists of two main parts: the local program and the server. The server has already been deployed on notif.xch.wiki, which you can directly use, or you can deploy your own server.
+The notification service consists of two main parts: the local program and the server. The server has already been deployed on notif.xch.wiki, which you can directly use, or you can deploy your own server. Here is the usage documentation for the local client.
+
+**About Block Rewards Notification:**
+
+1. This program has two methods for detecting block rewards. When operating in solo mode, it is recommended to use `notif_reward`. When joining in a mining pool, use `notif_reward_pool`.
+2. When joining a mining pool, ***do not*** enable the `notif_reward` option, as it will result in incorrect block reward notifications.
 
 **Important Note**
 > 1. This program is free and open source. Please configure it according to this documentation. **Do not** run any pre-compiled versions from other individuals, as it may pose risks of coin theft or mnemonic phrase theft.
@@ -79,7 +84,13 @@ Below are explanations for each option in the configuration file (brief explanat
 
 `notif_try`: Sending a test notification when the program starts. If not needed, change it to `false`.
 
-`notif_reward`: Enable block found notifications. If not needed, change it to `false`.
+`notif_reward`: Enable block reward notification (only applicable in solo mode, incorrect block reward notifications may be sent in non-solo mode). If not needed, change it to `false`.
+
+`notif_reward_pool`: Enable block reward notification (effective for both solo and joining mining pools, but with low real-time accuracy, data refreshed every 1 hour). If not needed, change it to `false`.
+
+`notif_reward_pool_xch`: The XCH address where the 1.75 (7/8) reward will send to. If `notif_reward_pool` was set to `true`, should give the right xch address.
+
+`notif_reward_pool_interval`: The `notif_reward_pool` option determines the interval for checking block rewards in minutes.
 
 `notif_point`: Enable plotting point notifications. If not needed, change it to `false`.
 

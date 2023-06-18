@@ -106,5 +106,13 @@
 	"content_try":{
 		"en":"This is a test notification sent at the start of program initialization. It appears that the program is running smoothly, and the notification channel is functioning properly!",
 		"zh_CN":"这是程序开始运行时推送的一条测试通知，看起来程序运行正常，并且推送通道也正常！"
+	},
+	"content_reward_time":{
+		"en":"Time",
+		"zh_CN":"时间"
+	},
+	"content_reward_height":{
+		"en":"Block Height",
+		"zh_CN":"区块高度"
 	}
 }

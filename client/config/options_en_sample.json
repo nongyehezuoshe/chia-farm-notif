@@ -39,9 +39,21 @@
     "value":true,
     "description":"Sending a test notification when the program starts."
   },
-  "notif_reward": {
+  "notif_reward":{
+    "value":true,
+    "description":"Enable block reward notification (only applicable in solo mode, incorrect block reward notifications may be sent in non-solo mode)."
+  },
+  "notif_reward_pool": {
     "value": false,
-    "description": "Enable block reward notification"
+    "description": "Enable block reward notification (effective for both solo and joining mining pools, but with low real-time accuracy, data refreshed every 1 hour)."
+  },
+  "notif_reward_pool_xch": {
+    "value": "xch........",
+    "description": "The XCH address where the 1.75 (7/8) reward will send to."
+  },
+  "notif_reward_pool_interval":{
+    "value": 60,
+    "description": "The `notif_reward_pool` option determines the interval for checking block rewards in minutes."
   },
   "notif_point": {
     "value": true,

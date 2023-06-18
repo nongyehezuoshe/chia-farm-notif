@@ -40,8 +40,20 @@
 		"description":"程序启动时，推送测试通知。"
 	},
 	"notif_reward":{
-		"value":false,
-		"description":"开启爆块通知"
+		"value":true,
+		"description":"开启爆块通知（仅solo时有效，非solo时会错误推送爆块通知）"
+	},
+	"notif_reward_pool": {
+		"value": false,
+		"description": "启用爆块通知（solo和加入矿池都有效，但是时效性较低，每隔1小时刷新一次数据）"
+	},
+	"notif_reward_pool_xch": {
+		"value": "xch........",
+		"description": "1.75奖励所在的XCH地址"
+	},
+	"notif_reward_pool_interval":{
+		"value": 60,
+		"description": "`notif_reward_pool`选项检测爆块的间隔时长，单位：分钟。"
 	},
 	"notif_point":{
 		"value":true,
