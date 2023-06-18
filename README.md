@@ -7,8 +7,8 @@ The notification service consists of two main parts: the local program and the s
 
 **About Block Rewards Notification:**
 
-1. This program has two methods for detecting block rewards. When operating in solo mode, it is recommended to use `notif_reward`. When joining in a mining pool, use `notif_reward_pool`.
-2. When joining a mining pool, ***do not*** enable the `notif_reward` option, as it will result in incorrect block reward notifications.
+> 1. This program has two methods for detecting block rewards. When operating in solo mode, it is recommended to use `notif_reward`. When joining in a mining pool, use `notif_reward_pool`.
+> 2. When joining a mining pool, ***do not*** enable the `notif_reward` option, as it will result in incorrect block reward notifications.
 
 **Important Note**
 > 1. This program is free and open source. Please configure it according to this documentation. **Do not** run any pre-compiled versions from other individuals, as it may pose risks of coin theft or mnemonic phrase theft.
